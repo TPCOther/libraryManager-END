@@ -29,7 +29,7 @@ public class bookDao extends Dao {
     }
 
     public int addBook(String Bname, String Author, Date Bdate, int Amount) {
-        String sql = "insert into book (Bname, Author, Bdate, Amount) = values(?,?,?,?)";
+        String sql = "insert into book (Bname, Author, Bdate, Amount) values(?,?,?,?)";
         return executeUpdate(sql, Bname, Author, Bdate, Amount);
     }
 
