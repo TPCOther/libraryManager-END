@@ -28,7 +28,7 @@ public class borrowDao extends Dao {
     }
 
     public int addBorrow(int UID, int BID) {
-        String sql = "insert into borrow (UID, BID, borrowDate) values(?, ?, getDate())";
+        String sql = "insert into borrow (UID, BID, borrowDate) values(?, ?, now())";
         return executeUpdate(sql, UID, BID);
     }
 
@@ -38,7 +38,7 @@ public class borrowDao extends Dao {
     }
 
     public int updateBorrow(int RID) {
-        String sql = "update borrow set returnDate = getDate() where RID = ?";
+        String sql = "update borrow set returnDate = now() where RID = ?";
         return executeUpdate(sql, RID);
     }
 }

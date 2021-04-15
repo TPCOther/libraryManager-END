@@ -44,7 +44,7 @@ public class bookDao extends Dao {
     }
 
     public int changeAmount(int BID, int Change) {
-        String sql = "update book set Amount = ? where BID = ?";
+        String sql = "update book set Amount = Amount + ? where BID = ?";
         return executeUpdate(sql, Change, BID);
     }
 

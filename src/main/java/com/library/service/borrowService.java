@@ -7,17 +7,17 @@ import com.library.dao.bookDao;
 import com.library.entity.borrow;
 
 public class borrowService {
-    private borrowDao borrowdao;
-    private bookDao bookdao;
+    private static borrowDao borrowdao = new borrowDao();
+    private static bookDao bookdao = new bookDao();
 
-    public RetResult queryBorrowByUser(int UID) {
+    public static RetResult queryBorrowByUser(int UID) {
         ArrayList<borrow> data = borrowdao.searchBorrowByUser(UID);
         return new RetResult(200,data);
     }
 
-    public RetResult borrowBook(int BID, int UID) {
-        int amout = bookdao.searchBookAmount(BID);
-        if(amout<=0) { return new RetResult(200,"已无存书"); }
+    public static RetResult borrowBook(int BID, int UID) {
+        int amount = bookdao.searchBookAmount(BID);
+        if(amount<=0) { return new RetResult(200,"已无存书"); }
         int code = borrowdao.addBorrow(UID, BID);
         if(code == -1){ return new RetResult(400,"借出失败"); }
         else { 
@@ -26,7 +26,7 @@ public class borrowService {
         }
     }
 
-    public RetResult returnBook(int RID, int BID) {
+    public static RetResult returnBook(int RID, int BID) {
         int code = bookdao.changeAmount(BID, 1);
         if(code == -1) {
             return new RetResult(400,"还书失败");
