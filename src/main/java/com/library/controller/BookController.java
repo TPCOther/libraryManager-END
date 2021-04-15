@@ -9,12 +9,12 @@ import com.library.entity.book;
 import com.library.dao.bookDao;
 
 @RestController
-public class TodoController {
+public class BookController {
     // 使用@RequstMapping指定可以访问的URL路径
     @RequestMapping(value ="/books/{name}")
     public List<book> getAllTodos(@PathVariable String name) {
         bookDao dao = new bookDao();
-        List<book> books = dao.searchBook(name);
+        List<book> books = dao.searchBookByName(name);
         return books;
     }
 }

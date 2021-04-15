@@ -6,7 +6,7 @@ public class RetResult {
     private Object data;
 
     public RetResult(){
-        this.code = Integer.vauleOf(0);
+        this.code = Integer.valueOf(0);
         this.msg = "";
         this.data = null;
     }
@@ -20,6 +20,12 @@ public class RetResult {
     public RetResult(Integer code, Object data) {
         this.code = code;
         this.msg = "success";
+        this.data = data;
+    }
+
+    public RetResult(Integer code, String msg, Object data) {
+        this.code = code;
+        this.msg = msg;
         this.data = data;
     }
 
