@@ -21,7 +21,7 @@ public class userDao extends Dao {
     }
 
     public int addUser(String Uname, String Pwd) {
-        String sql = "insert into user (Uname, Pwd) values(?,?)";
+        String sql = "insert into user (Uname, Pwd, CreateDate) values(?, ?, now())";
         return executeUpdate(sql, Uname, Pwd);
     }
 

@@ -26,7 +26,7 @@ public class user {
     }
 
     public boolean login(String pwd) {
-        if(pwd == this.pwd) {return true;}
+        if(pwd.equals(this.pwd)) {return true;}
         else {return false;}
     }
 }

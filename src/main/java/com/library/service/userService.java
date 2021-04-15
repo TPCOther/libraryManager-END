@@ -5,15 +5,15 @@ import com.library.dao.userDao;
 import com.library.entity.user;
 
 public class userService {
-    private userDao db;
+    private static userDao db = new userDao();
 
-    public RetResult userRegister(String Uname, String Pwd) {
+    public static RetResult userRegister(String Uname, String Pwd) {
         int code = db.addUser(Uname, Pwd);
         if(code == -1) { return new RetResult(400,"注册失败"); }
         else { return new RetResult(200, "注册成功"); }
     }
 
-    public RetResult userLogin(String Uname, String Pwd) {
+    public static RetResult userLogin(String Uname, String Pwd) {
          ArrayList<user> users = db.searchUser(Uname);
          if(users.isEmpty()) { return new RetResult(200, "用户不存在"); }
          user login = users.get(0);
