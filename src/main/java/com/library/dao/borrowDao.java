@@ -13,10 +13,10 @@ public class borrowDao extends Dao {
         return rs;
     }
 
-    public ArrayList<borrow> searchBorrowByUser(int UID) {
-        ArrayList<borrow> rs;
-        String sql = "select * from borrow where UID = ?";
-        rs = borrowTransfer(executeQuery(sql, UID));
+    public ArrayList<Object> searchBorrowByUser(int UID) {
+        ArrayList<Object> rs;
+        String sql = "select RID, book.BID, Bname, borrowDate, returnDate from borrow, book where UID = ? and borrow.BID = book.BID";
+        rs = executeQuery(sql, UID);
         return rs;
     }
 

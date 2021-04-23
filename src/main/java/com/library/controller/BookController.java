@@ -1,9 +1,10 @@
 package com.library.controller;
 
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.service.*;
@@ -11,12 +12,13 @@ import com.library.service.*;
 import com.library.entity.book;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api")
 public class BookController {
     
     // 使用@RequstMapping指定可以访问的URL路径
-    @RequestMapping(value ="/books/{name}", method = RequestMethod.GET)
-    public RetResult searchBook(@PathVariable String name) {
+    @RequestMapping(value ="/books", method = RequestMethod.GET)
+    public RetResult searchBook(@RequestParam("name") String name) {
         return bookService.searchBook(name);
     }
 

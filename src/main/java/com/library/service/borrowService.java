@@ -4,20 +4,19 @@ import java.util.ArrayList;
 
 import com.library.dao.borrowDao;
 import com.library.dao.bookDao;
-import com.library.entity.borrow;
 
 public class borrowService {
     private static borrowDao borrowdao = new borrowDao();
     private static bookDao bookdao = new bookDao();
 
     public static RetResult queryBorrowByUser(int UID) {
-        ArrayList<borrow> data = borrowdao.searchBorrowByUser(UID);
+        ArrayList<Object> data = borrowdao.searchBorrowByUser(UID);
         return new RetResult(200,data);
     }
 
     public static RetResult borrowBook(int BID, int UID) {
         int amount = bookdao.searchBookAmount(BID);
-        if(amount<=0) { return new RetResult(200,"已无存书"); }
+        if(amount<=0) { return new RetResult(300,"已无存书"); }
         int code = borrowdao.addBorrow(UID, BID);
         if(code == -1){ return new RetResult(400,"借出失败"); }
         else { 
